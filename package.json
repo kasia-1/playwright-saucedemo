@@ -1,14 +1,45 @@
 {
-  "name": "automation-learning",
+  "name": "playwright-saucedemo-automation",
   "version": "1.0.0",
-  "description": "",
+  "description": "Enterprise-grade Playwright test automation framework following industry best practices with Page Object Model, comprehensive test coverage, and CI/CD integration",
   "main": "index.js",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "scripts": {
+    "test": "playwright test",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "test:headed": "playwright test --headed",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:regression": "playwright test --grep @regression",
+    "test:e2e": "playwright test --grep @e2e",
+    "test:chrome": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install"
+  },
+  "keywords": [
+    "playwright",
+    "test-automation",
+    "e2e-testing",
+    "saucedemo",
+    "page-object-model",
+    "typescript"
+  ],
+  "author": "Katarzyna Kłosowska <your-email@example.com>",
+  "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "^1.62.1",
-    "@types/node": "^26.4.0"
+    "@playwright/test": "^1.46.0",
+    "@types/node": "^22.5.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "dotenv": "^17.4.2",
+    "eslint": "^8.56.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.9",
+    "prettier": "^3.3.3",
+    "typescript": "^5.5.4"
   }
 }
