@@ -1,7 +1,7 @@
 import { Page, Locator } from '@playwright/test';
-import { BasePage } from '../base/BasePage';
+import { AuthenticatedPage } from '@pom/pages/AuthenticatedPage';
 
-export class InventoryPage extends BasePage {
+export class InventoryPage extends AuthenticatedPage {
   readonly pageTitle: Locator;
   private readonly cartLink = '[data-test="shopping-cart-link"]';
   private readonly inventoryList = '.inventory_list';
