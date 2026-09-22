@@ -2,6 +2,7 @@ import { Page, expect } from '@playwright/test';
 import { AuthenticatedPage } from '@pom/pages/AuthenticatedPage';
 
 export class InventoryPage extends AuthenticatedPage {
+  private url: string = '/inventory.html';
   readonly pageTitle = this.page.locator('.title');
   private readonly cartLink = this.page.getByRole('button', { name: /Cart/ });
   private readonly inventoryList = this.page.locator('[data-test="inventory-list"]');
@@ -12,6 +13,10 @@ export class InventoryPage extends AuthenticatedPage {
 
   constructor(page: Page) {
     super(page);
+  }
+
+  async goto(): Promise<void> {
+    await this.page.goto(this.url);
   }
 
   async waitForLoaded(): Promise<void> {

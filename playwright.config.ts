@@ -39,17 +39,62 @@ export default defineConfig({
   webServer: undefined,
 
   projects: [
+    // Auth setup - runs first, generates .auth/standard-user.json
     {
-      name: 'chromium',
+      name: 'auth',
+      testMatch: '**/auth.setup.ts',
       use: { ...devices['Desktop Chrome'] },
     },
+    // Login tests - NO storageState because the logic is in the test
     {
-      name: 'firefox',
+      name: 'chromium-login-addToCart',
+      testMatch: ['**/login.spec.ts', '**/addToCart.spec.ts'],
+      use: { ...devices['Desktop Chrome'] },
+    },
+    // All other tests - WITH storageState to show how it works in the portfolio
+    {
+      name: 'chromium',
+      testMatch: '**/*.spec.ts',
+      testIgnore: ['**/login.spec.ts', '**/addToCart.spec.ts'],
+      use: {
+        ...devices['Desktop Chrome'],
+        storageState: '.auth/standard-user.json',
+      },
+      dependencies: ['auth'],
+    },
+
+    // Firefox
+    {
+      name: 'firefox-login-addToCart',
+      testMatch: ['**/login.spec.ts', '**/addToCart.spec.ts'],
       use: { ...devices['Desktop Firefox'] },
     },
     {
-      name: 'webkit',
+      name: 'firefox',
+      testMatch: '**/*.spec.ts',
+      testIgnore: ['**/login.spec.ts', '**/addToCart.spec.ts'],
+      use: {
+        ...devices['Desktop Firefox'],
+        storageState: '.auth/standard-user.json',
+      },
+      dependencies: ['auth'],
+    },
+
+    // WebKit
+    {
+      name: 'webkit-login-addToCart',
+      testMatch: ['**/login.spec.ts', '**/addToCart.spec.ts'],
       use: { ...devices['Desktop Safari'] },
+    },
+    {
+      name: 'webkit',
+      testMatch: '**/*.spec.ts',
+      testIgnore: ['**/login.spec.ts', '**/addToCart.spec.ts'],
+      use: {
+        ...devices['Desktop Safari'],
+        storageState: '.auth/standard-user.json',
+      },
+      dependencies: ['auth'],
     },
   ],
 });

@@ -1,3 +1,4 @@
+// No fixture login, no storageState login
 import { test, expect } from '@fixtures/test';
 import { users } from '@data/users';
 
