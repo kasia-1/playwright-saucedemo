@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 
 export class BasePage {
   readonly page: Page;
@@ -11,16 +11,16 @@ export class BasePage {
     await this.page.goto(path);
   }
 
-  async fillInput(locator: string, text: string): Promise<void> {
-    await this.page.locator(locator).fill(text);
+  async fillInput(locator: Locator, text: string): Promise<void> {
+    await locator.fill(text);
   }
 
   async click(locator: string): Promise<void> {
     await this.page.locator(locator).click();
   }
 
-  async getText(locator: string): Promise<string> {
-    const text = await this.page.locator(locator).textContent();
+  async getText(locator: Locator): Promise<string> {
+    const text = await locator.textContent();
     return text || '';
   }
 
