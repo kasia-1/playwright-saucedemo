@@ -7,6 +7,6 @@ setup('authenticate standard user', async ({ loginPage, inventoryPage, page }) =
   await inventoryPage.waitForLoaded();
 
   await page.context().storageState({
-    path: '../.auth/standard-user.json',
+    path: '.auth/standard-user.json',
   });
 });
