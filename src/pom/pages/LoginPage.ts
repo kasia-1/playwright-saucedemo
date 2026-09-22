@@ -1,4 +1,4 @@
-import { Page, expect, Locator } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 import { BasePage } from '../base/BasePage';
 
 export type LoginUser = {
@@ -7,17 +7,13 @@ export type LoginUser = {
 };
 
 export class LoginPage extends BasePage {
-  private readonly usernameInput: Locator;
-  private readonly passwordInput: Locator;
-  private readonly loginButton: Locator;
-  private readonly errorMessage: Locator;
+  private readonly usernameInput = this.page.getByRole('textbox', { name: 'Username' });
+  private readonly passwordInput = this.page.getByRole('textbox', { name: 'Password' });
+  private readonly loginButton = this.page.getByRole('button', { name: 'Login' });
+  private readonly errorMessage = this.page.getByRole('alert');
 
   constructor(page: Page) {
     super(page);
-    this.usernameInput = this.page.getByRole('textbox', { name: 'Username' });
-    this.passwordInput = this.page.getByRole('textbox', { name: 'Password' });
-    this.loginButton = this.page.getByRole('button', { name: 'Login' });
-    this.errorMessage = this.page.locator('[data-test="error"]');
   }
 
   async open(): Promise<void> {

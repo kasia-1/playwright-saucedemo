@@ -1,16 +1,17 @@
-import { Page, Locator, expect } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 import { AuthenticatedPage } from '@pom/pages/AuthenticatedPage';
 
 export class InventoryPage extends AuthenticatedPage {
-  readonly pageTitle: Locator;
-  private readonly cartLink = '[data-test="shopping-cart-link"]';
-  private readonly inventoryList = '.inventory_list';
-  private readonly addBackpackButton = '[data-test="add-to-cart-sauce-labs-backpack"]';
-  private readonly cartBadge = '.shopping_cart_badge';
+  readonly pageTitle = this.page.locator('.title');
+  private readonly cartLink = this.page.getByRole('button', { name: /Cart/ });
+  private readonly inventoryList = this.page.locator('[data-test="inventory-list"]');
+  private readonly addBackpackButton = this.page.locator(
+    '[data-test="add-to-cart-sauce-labs-backpack"]'
+  );
+  private readonly cartBadge = this.page.locator('[data-test="shopping-cart-badge"]');
 
   constructor(page: Page) {
     super(page);
-    this.pageTitle = page.locator('.title');
   }
 
   async waitForLoaded(): Promise<void> {
@@ -18,7 +19,7 @@ export class InventoryPage extends AuthenticatedPage {
   }
 
   async openCart(): Promise<void> {
-    await this.click(this.cartLink);
+    await this.cartLink.click();
   }
 
   async getTitle(): Promise<string> {
@@ -26,11 +27,11 @@ export class InventoryPage extends AuthenticatedPage {
   }
 
   async addBackpackToCart(): Promise<void> {
-    await this.click(this.addBackpackButton);
+    await this.addBackpackButton.click();
   }
 
   async expectCartBadgeToHaveCount(count: string): Promise<void> {
-    await this.page.locator(this.cartBadge).waitFor({ state: 'visible' });
-    await expect(this.page.locator(this.cartBadge)).toHaveText(count);
+    await this.cartBadge.waitFor({ state: 'visible' });
+    await expect(this.cartBadge).toHaveText(count);
   }
 }
