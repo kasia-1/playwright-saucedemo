@@ -24,8 +24,8 @@ export class BasePage {
     return text || '';
   }
 
-  async waitForElement(locator: string): Promise<void> {
-    await this.page.locator(locator).waitFor({ state: 'visible' });
+  async waitForElement(locator: Locator): Promise<void> {
+    await locator.waitFor({ state: 'visible' });
   }
 
   async isElementVisible(locator: string): Promise<boolean> {
