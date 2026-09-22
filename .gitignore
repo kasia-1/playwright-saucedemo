@@ -8,7 +8,7 @@ package-lock.json
 /playwright-report/
 /blob-report/
 /playwright/.cache/
-/playwright/.auth/
+.auth/
 *.mp4
 *.webm
 
@@ -28,6 +28,9 @@ package-lock.json
 # Build
 dist/
 *.tsbuildinfo
+
+# AI Reports
+failure-reports/
 
 # Logs
 logs/

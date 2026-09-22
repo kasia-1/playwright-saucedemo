@@ -11,27 +11,27 @@ type Users = {
 
 export const users: Users = {
   standard: {
-    username: 'standard_user',
-    password: 'secret_sauce',
+    username: process.env.SAUCE_DEMO_USERNAME!,
+    password: process.env.SAUCE_DEMO_PASSWORD!,
   },
   lockedOut: {
-    username: 'locked_out_user',
-    password: 'secret_sauce',
+    username: process.env.SAUCE_DEMO_LOCKED_OUT_USER!,
+    password: process.env.SAUCE_DEMO_PASSWORD!,
   },
   problem: {
-    username: 'problem_user',
-    password: 'secret_sauce',
+    username: process.env.SAUCE_DEMO_PROBLEM_USER!,
+    password: process.env.SAUCE_DEMO_PASSWORD!,
   },
   performanceGlitch: {
-    username: 'performance_glitch_user',
-    password: 'secret_sauce',
+    username: process.env.SAUCE_DEMO_PERFORMANCE_GLITCH_USER!,
+    password: process.env.SAUCE_DEMO_PASSWORD!,
   },
   error: {
-    username: 'error_user',
-    password: 'secret_sauce',
+    username: process.env.SAUCE_DEMO_ERROR_USER!,
+    password: process.env.SAUCE_DEMO_PASSWORD!,
   },
   visual: {
-    username: 'visual_user',
-    password: 'secret_sauce',
+    username: process.env.SAUCE_DEMO_VISUAL_USER!,
+    password: process.env.SAUCE_DEMO_PASSWORD!,
   },
 };

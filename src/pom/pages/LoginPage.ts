@@ -1,4 +1,4 @@
-import { Page, expect } from '@playwright/test';
+import { Page, expect, Locator } from '@playwright/test';
 import { BasePage } from '../base/BasePage';
 
 export type LoginUser = {
@@ -7,13 +7,17 @@ export type LoginUser = {
 };
 
 export class LoginPage extends BasePage {
-  private readonly usernameInput = '[data-test="username"]';
-  private readonly passwordInput = '[data-test="password"]';
-  private readonly loginButton = '[data-test="login-button"]';
-  private readonly errorMessage = '[data-test="error"]';
+  private readonly usernameInput: Locator;
+  private readonly passwordInput: Locator;
+  private readonly loginButton: Locator;
+  private readonly errorMessage: Locator;
 
   constructor(page: Page) {
     super(page);
+    this.usernameInput = this.page.getByRole('textbox', { name: 'Username' });
+    this.passwordInput = this.page.getByRole('textbox', { name: 'Password' });
+    this.loginButton = this.page.getByRole('button', { name: 'Login' });
+    this.errorMessage = this.page.locator('[data-test="error"]');
   }
 
   async open(): Promise<void> {
@@ -23,7 +27,7 @@ export class LoginPage extends BasePage {
   async login(user: LoginUser): Promise<void> {
     await this.fillInput(this.usernameInput, user.username);
     await this.fillInput(this.passwordInput, user.password);
-    await this.click(this.loginButton);
+    await this.loginButton.click();
   }
 
   async getErrorMessage(): Promise<string> {
@@ -31,7 +35,7 @@ export class LoginPage extends BasePage {
   }
 
   async expectLoginInputsToHaveError(): Promise<void> {
-    await expect(this.page.locator(this.usernameInput)).toHaveClass(/error/);
-    await expect(this.page.locator(this.passwordInput)).toHaveClass(/error/);
+    await expect(this.usernameInput).toHaveClass(/error/);
+    await expect(this.passwordInput).toHaveClass(/error/);
   }
 }
