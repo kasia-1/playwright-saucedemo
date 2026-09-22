@@ -29,6 +29,9 @@ package-lock.json
 dist/
 *.tsbuildinfo
 
+# AI Reports
+failure-reports/
+
 # Logs
 logs/
 *.log
