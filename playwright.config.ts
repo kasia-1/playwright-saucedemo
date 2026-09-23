@@ -45,7 +45,9 @@ export default defineConfig({
       testMatch: '**/auth.setup.ts',
       use: { ...devices['Desktop Chrome'] },
     },
-    // Login tests - NO storageState because the logic is in the test
+    /* Login tests - NO storageState because the logic is in the test
+     add to cart tests - NO storageState because the fixture loggedInUser approach is implemented
+    */
     {
       name: 'chromium-login-addToCart',
       testMatch: ['**/login.spec.ts', '**/addToCart.spec.ts'],
@@ -63,12 +65,16 @@ export default defineConfig({
       dependencies: ['auth'],
     },
 
-    // Firefox
+    /* Firefox
+     Login tests - NO storageState because the logic is in the test
+     add to cart tests - NO storageState because the fixture loggedInUser approach is implemented
+    */
     {
       name: 'firefox-login-addToCart',
       testMatch: ['**/login.spec.ts', '**/addToCart.spec.ts'],
       use: { ...devices['Desktop Firefox'] },
     },
+    //All other tests - WITH storageState to show how it works in the portfolio
     {
       name: 'firefox',
       testMatch: '**/*.spec.ts',
@@ -80,12 +86,16 @@ export default defineConfig({
       dependencies: ['auth'],
     },
 
-    // WebKit
+    /* WebKit
+    Login tests - NO storageState because the logic is in the test
+    add to cart tests - NO storageState because the fixture loggedInUser approach is implemented
+    */
     {
       name: 'webkit-login-addToCart',
       testMatch: ['**/login.spec.ts', '**/addToCart.spec.ts'],
       use: { ...devices['Desktop Safari'] },
     },
+    //All other tests - WITH storageState to show how it works in the portfolio
     {
       name: 'webkit',
       testMatch: '**/*.spec.ts',
