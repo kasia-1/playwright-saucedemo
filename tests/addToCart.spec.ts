@@ -9,7 +9,7 @@ test.describe('Add products to the cart', () => {
     page,
   }) => {
     await inventoryPage.addBackpackToCart();
-    await inventoryPage.expectCartBadgeToHaveCount('1');
+    await inventoryPage.expectCartBadgeToHaveCount(1);
 
     await inventoryPage.openCart();
     await cartPage.waitForLoaded();
