@@ -1,7 +1,6 @@
 ---
 name: e2e-test-structure-assistant
 description: 'Rewrites existing Playwright `*.spec.ts` tests or creates new ones using the repository standard structure and explicit `test.step()` blocks.'
-tools: ['search', 'edit', 'new', 'problems', 'changes', 'todos']
 ---
 
 # E2E Test Structure Assistant
