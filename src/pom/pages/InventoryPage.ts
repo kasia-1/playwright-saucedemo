@@ -70,6 +70,11 @@ export class InventoryPage extends AuthenticatedPage {
   }
 
   async expectCartBadgeToHaveCount(count: number): Promise<void> {
+    if (count === 0) {
+      await expect(this.cartBadge).toHaveCount(0);
+      return;
+    }
+
     await this.cartBadge.waitFor({ state: 'visible' });
     await expect(this.cartBadge).toHaveText(String(count));
   }
